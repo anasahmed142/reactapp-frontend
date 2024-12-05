@@ -1,4 +1,4 @@
-  import React, { useState, useContext } from "react";
+  import React, { useState,useEffect, useContext } from "react";
   import { useNavigate } from "react-router-dom";
   import { AuthContext } from "./App";
 
@@ -9,7 +9,14 @@
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const navigate = useNavigate();
-
+    useEffect(() => {
+      fetch("/api/", {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch(() => console.log("Failed to fetch."));
+    }, []);
     const onButtonClick = () => {
       setEmailError("");
       setPasswordError("");
@@ -34,7 +41,7 @@
         return;
       }
 
-      fetch("http://localhost:3080/auth", {
+      fetch("http://localhost:3080/api/auth", {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

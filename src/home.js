@@ -47,7 +47,7 @@ const Home = () => {
             formData.append(`tags[${index}]`, updatedTags[index]);
         });
 
-        fetch("http://localhost:3080/upload", {
+        fetch("http://localhost:3080/api/upload", {
             method: "POST",
             headers: {
                 'jwt-token': JSON.parse(localStorage.getItem("user"))?.token || ""
@@ -74,7 +74,7 @@ const Home = () => {
 
     const fetchUploadedFiles = () => {
         setFiles([]);
-        fetch("http://localhost:3080/files", {
+        fetch("http://localhost:3080/api/files", {
             method: "GET",
             headers: {
                 'jwt-token': JSON.parse(localStorage.getItem("user"))?.token || "",

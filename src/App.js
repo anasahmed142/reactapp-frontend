@@ -23,7 +23,7 @@ function App() {
       setLoggedIn(false);
       return;
     }
-    fetch("http://localhost:3080/verify", {
+    fetch("http://localhost:3080/api/verify", {
       method: "POST",
       headers: { 'jwt-token': user.token }
     })

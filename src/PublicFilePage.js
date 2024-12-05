@@ -8,7 +8,7 @@ const PublicFilePage = () => {
 
   useEffect(() => {
     // Fetch the file details using the fileId from the URL
-    fetch(`http://localhost:3080/files/${fileId}`)
+    fetch(`http://localhost:3080/api/files/${fileId}`)
       .then((response) => response.json())
       .then((data) => {
         setFile(data.file);
@@ -34,10 +34,10 @@ const PublicFilePage = () => {
       <p>Views: {file.views}</p>
       <div className="file-container">
         {file.filename.endsWith('.jpg') || file.filename.endsWith('.png') ? (
-          <img src={`http://localhost:3080${file.path}`} alt={file.filename} />
+          <img src={`http://localhost:3080/api${file.path}`} alt={file.filename} />
         ) : file.filename.endsWith('.mp4') ? (
           <video controls>
-            <source src={`http://localhost:3080${file.path}`} type="video/mp4" />
+            <source src={`http://localhost:3080/api${file.path}`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : (
